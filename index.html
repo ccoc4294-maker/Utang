@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kredigo — Credit Ledger</title>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22Kredigo%20%5Cu2014%20Credit%20Ledger%22%2C%20%22short_name%22%3A%20%22Kredigo%22%2C%20%22description%22%3A%20%22Track%20grocery%20store%20credit%2C%20payments%2C%20and%20overdue%20accounts.%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%234F46E5%22%2C%20%22theme_color%22%3A%20%22%234F46E5%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEoklEQVR4nO3dPVIcVxiG0YbyAhw5EGtx2RGqsgNIvSyvwqkI7CqRei1y4Mg7wIEKFT/D0P/3u/2eE0tDV9/v6ds9DHAxFHNz/eWh9TGwnbv7q4vWx/BU04Mx7AxD2yh2/8KGnnP2jmG3L2bwmWKvEDb/IgafJbYOYbMXN/isaasQVn9Rg8%2BW1g7hcs0XM/xsbe0ZW6Umg08La%2BwGi3cAw08ra8zeogAMP60tncHZARh%2Bqlgyi7MCMPxUM3cmJwdg%2BKlqzmxOCsDwU93UGR0dgOGnF1NmdVQAhp/ejJ3ZdwMw/PRqzOyu%2BlEI6M3ZAFz96d17M/xmAIafozg3y26BiHYyAFd/juatmbYDEO1VAK7%2BHNWp2bYDEO1ZAK7%2BHN3LGbcDEO1bAK7%2BpHg663YAogmAaJfD4PaHPI8zbwcgmgCIJgCiCYBoFx6ASWYHIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBo37U%2BgKU%2Bff7Q%2BhCi3X78p/UhLNLlb4Uw9DX1GENXARj8PvQUQjfPAIa/Hz2tVRcB9HRC%2BaqXNSsfQC8nktd6WLvSAfRwAjmv%2BhqWDaD6iWO8ymtZNgDYQ8kAKl8xmKfqmpYMAPYiAKKVC6DqVslyFde2XACwJwEQTQBEEwDRBEA0ARBNAEQTANEEQLRyvxXi%2B7/%2BaH0IbOjn4afWh/CMHYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiFbuZ4L/%2B%2BW31ofAhm5/r/U3hO0ARBMA0QRANAEQTQBEEwDRyr0NuoZ///xx0r//4de/NzoSqjtUAFMH/%2BX/E0Iet0BEO0wAc6/%2Ba78GfTlMADCHAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiHSaANT7J6dOgeQ4TAMxxqJ8HeLyC%2B4EYxjpUAI8MNGO5BSJauQBuP9b61Xmsp%2BLalgsA9iQAopUMoOJWyTJV17RkALCXsgFUvWIwXeW1LBvAMNQ%2BcYxTfQ1LBzAM9U8gb%2Bth7coHMAx9nEie62XNughgGPo5ofS1Vhc3118eWh/EVJ8%2Bf2h9CJzQ0%2BA/6jKAp8TQVo9D/1T3AcAS3TwDwBYEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0S7v7q8uWh8EtHB3f3VhByCaAIgmAKIJgGiXw/D1YaD1gcCeHmfeDkA0ARDtWwBug0jxdNbtAER7FoBdgKN7OeN2AKK9CsAuwFGdmm07ANFOBmAX4Gjemmk7ANHeDMAuwFGcm%2BWzO4AI6N17M%2BwWiGjvBmAXoFdjZnfUDiACejN2ZkffAomAXkyZ1UnPACKguqkzOvkhWARUNWc2Z70LJAKqmTuTs98GFQFVLJnFRd8HEAGtLZ3Bxd8IEwGtrDF7qw7vzfWXhzVfD05Z86K76kch7AZsbe0Z22xg7QasaauL6%2BZXbCGwxNZ3FbvdsgiBKfa6nd79nl0InLP3c2TTh1YxMAxt3zwp966NKI6t2juF/wMy7ijXkOGLSgAAAABJRU5ErkJggg%3D%3D%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%20maskable%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAOHElEQVR4nO3cMZLc1hWFYQyLC3CkQFyLyo6oKisgUy/Lq3AqBnKVmGotZKDIO6ADVlNNcqan0Q3g3fvO921AGEw1zt8PQz0slPTm9YdPo68BYAvv3r96GH0NfM8vZRADD/CZQBjDTT%2BAsQdYRxTszw3egcEH2JYg2J4bugGDD3AsQXA/N/BGRh%2BgBjFwGzdtBaMPUJsYuJ4b9QyjD9CTGLjMzXmC4QeYgxB4nJtyxugDzE0M/MWNWAw/QBohEB4Ahh8gW3IIRP7ghh%2BAc4khEPUDG34ALkkKgYgf1PADsEZCCLwYfQF7M/4ArJWwHdMWTsIvD4D9zXoaMN0PZfgB2MNsITDVKwDjD8BeZtuYKWpmtl8KALXNcBrQ/gTA%2BANwtBm2p3UAzPALAKCn7hvU8gij%2B00HYC4dXwm0OwEw/gBU03GbWgVAxxsMQIZuG9XiyKLbTQUgW4dXAuVPAIw/AN102K7SAdDhBgLAY6pvWNkAqH7jAOA5lbesZABUvmEAsEbVTSsXAFVvFADcquK2lQqAijcIALZQbePKBEC1GwMAW6u0dSUCoNINAYA9Vdm84QFQ5UYAwFEqbN/QAKhwAwBghNEbOCwARv/gADDayC0cEgDGHwA%2BG7WJhweA8QeAr43YxkMDwPgDwOOO3sjDAsD4A8BlR27lIQFg/AHgOkdt5vD/DwAAcLzdA8C3fwBY54jt3DUAjD8A3GbvDd0tAIw/ANxnzy31NwAAEGiXAPDtHwC2sdembh4Axh8AtrXHtm4aAMYfAPax9cb6GwAACLRZAPj2DwD72nJrNwkA4w8Ax9hqc70CAIBAdweAb/8AcKwtttcJAAAEuisAfPsHgDHu3eCbA8D4A8BY92yxVwAAEOimAPDtHwBquHWTnQAAQKDVAeDbPwDUcss2OwEAgECrAsC3fwCoae1GOwEAgEBXB4Bv/wBQ25qtdgIAAIGuCgDf/gGgh2s32wkAAAQSAAAQ6NkAcPwPAL1cs91OAAAg0MUA8O0fAHp6bsOdAABAIAEAAIGeDADH/wDQ26UtdwIAAIEEAAAEejQAHP8DwBye2nQnAAAQSAAAQKDvAsDxPwDM5bFtdwIAAIEEAAAEEgAAEOirAPD%2BHwDm9O3GOwEAgEACAAACCQAACPQlALz/B4C5nW%2B9EwAACCQAACCQAACAQAIAAAK9WBZ/AAgAKU6b7wQAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAg0IP/BwAA5HECAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABHo5%2BgKo49fffxx9CcDO3v78cfQlUMTDm9cfPo2%2BCMYw%2BIAgyCUAwhh94CliIIsACGD0gbXEwPwEwMQMP3AvITAvATAhww9sTQjMxz8DnIzxB/bg2TIfJwCT8OEEjuI0YA5OACZg/IEjeebMQQA054MIjODZ059XAE358AFVeCXQkxOAhow/UIlnUk8CoBkfNKAiz6Z%2BBEAjPmBAZZ5RvQgAAAgkAJpQ1kAHnlV9CIAGfKCATjyzehAAxfkgAR15dtUnAAAgkAAoTEEDnXmG1SYAivLBAWbgWVaXAACAQAKgIMUMzMQzrSYBAACBBEAxShmYkWdbPQIAAAIJAAAIJAAKcUQGzMwzrhYBAACBBAAABBIARTgaAxJ41tUhAAAgkAAAgEACAAACCYACvBMDknjm1SAAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACDQy9EXwLL87b//GX0JAIf6x/L30ZcQzwkAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQKCXoy%2BAZfnfP/81%2BhIADvX23x9HX0I8JwAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABHo5%2BgLo68/ffhr63//hlz%2BG/vcBOhMArDZ6%2BE9O1yEEANbzCoBVqoz/uYrXBFCdEwCuUn1knQYArOMEAAACCQCeVf3b/7lO1wowkgDgoo6D2vGaAY4mAAAgkADgSZ2/SXe%2BdoAjCAAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAoAn/fDLH6Mv4Wadrx3gCAIAAAIJAC7q%2BE264zUDHE0A8KxOg9rpWgFGEgAAEOjl6Augh9M36z9/%2B2nwlTzON3%2BAdZwAsErFoa14TQDVOQFgtSqnAYYf4HYCgJsZYIC%2BvAIo4O3PH0dfAsBhPPNqEAAAEEgAAEAgAQAAgQRAEd6JAQk86%2BoQAAAQSAAAQCABUIijMWBmnnG1CAAACCQAACCQACjGERkwI8%2B2egQAAAQSAAUpZWAmnmk1CQAACCQAilLMwAw8y%2BoSAIX54ACdeYbVJgAAIJAAKE5BAx15dtUnABrwQQI68czqQQA04QMFdOBZ1YcAAIBAAqARZQ1U5hnViwBoxgcMqMizqR8B0JAPGlCJZ1JPD29ef/g0%2BiK43a%2B//zj6EoBQhr83JwDN%2BQACI3j29CcAJuCDCBzJM2cOXgFMxisBYC%2BGfy5OACbjAwrswbNlPk4AJuY0ALiX4Z%2BXAAggBIC1DP/8BEAYMQA8xehnEQDBxABg9HMJAL4QBDA/g8%2BJAACAQP4ZIAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgV68e//qYfRFAADHeff%2B1YMTAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEAvluXzvwccfSEAwP5Om%2B8EAAACCQAACCQAACCQAACAQF8CwB8CAsDczrfeCQAABBIAABBIAABAoK8CwN8BAMCcvt14JwAAEEgAAEAgAQAAgb4LAH8HAABzeWzbnQAAQCABAACBHg0ArwEAYA5PbboTAAAIJAAAINCTAeA1AAD0dmnLnQAAQCABAACBLgaA1wAA0NNzG%2B4EAAACPRsATgEAoJdrttsJAAAEEgAAEOiqAPAaAAB6uHaznQAAQKCrA8ApAADUtmarnQAAQKBVAeAUAABqWrvRTgAAINDqAHAKAAC13LLNTgAAINBNAeAUAABquHWTnQAAQKCbA8ApAACMdc8W33UCIAIAYIx7N9grAAAIdHcAOAUAgGNtsb1OAAAg0CYB4BQAAI6x1eZudgIgAgBgX1turVcAABBo0wBwCgAA%2B9h6Yzc/ARABALCtPbZ1l1cAIgAAtrHXpvobAAAItFsAOAUAgPvsuaW7ngCIAAC4zd4buvsrABEAAOscsZ3%2BBgAAAh0SAE4BAOA6R23mYScAIgAALjtyKw99BSACAOBxR2/k4X8DIAIA4GsjtnHIHwGKAAD4bNQmDvtXACIAgHQjt3DoPwMUAQCkGr2Bw/8/AKNvAAAcrcL2DQ%2BAZalxIwDgCFU2r0QALEudGwIAe6m0dWUCYFlq3RgA2FK1jSsVAMtS7wYBwL0qblu5AFiWmjcKAG5RddNKBsCy1L1hAHCtyltWNgCWpfaNA4BLqm9Y6QBYlvo3EAC%2B1WG7yl/guTevP3wafQ0A8JQOw39S/gTgXKcbC0CWbhvVKgCWpd8NBmB%2BHbep3QWf80oAgJE6Dv9JuxOAc51vPAC9dd%2Bg1gGwLP1/AQD0M8P2tP8BznklAMCeZhj%2Bk/YnAOdm%2BsUAUMtsGzPVD3POaQAAW5ht%2BE%2Bm/KHOCQEAbjHr8J9M9QrgMbP/AgHYXsJ2TP8DnnMaAMAlCcN/EvODnhMCAJxLGv6TuB/4nBAAyJY4/CexP/g5IQCQJXn4T%2BJvwDkhADA3w/8XN%2BIJYgBgDkb/cW7KM4QAQE%2BG/zI3ZwUxAFCb0b%2BeG3UjMQBQg9G/jZu2ATEAcCyjfz83cAeCAGBbBn97bugBBAHAOgZ/f27wIKIA4DNjP4abXpRAAGZh4Gv6Pynw%2BwJaktISAAAAAElFTkSuQmCC%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%20maskable%22%7D%5D%7D">
+<meta name="theme-color" content="#4F46E5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kredigo">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEoklEQVR4nO3dPVIcVxiG0YbyAhw5EGtx2RGqsgNIvSyvwqkI7CqRei1y4Mg7wIEKFT/D0P/3u/2eE0tDV9/v6ds9DHAxFHNz/eWh9TGwnbv7q4vWx/BU04Mx7AxD2yh2/8KGnnP2jmG3L2bwmWKvEDb/IgafJbYOYbMXN/isaasQVn9Rg8+W1g7hcs0XM/xsbe0ZW6Umg08La+wGi3cAw08ra8zeogAMP60tncHZARh+qlgyi7MCMPxUM3cmJwdg+KlqzmxOCsDwU93UGR0dgOGnF1NmdVQAhp/ejJ3ZdwMw/PRqzOyu+lEI6M3ZAFz96d17M/xmAIafozg3y26BiHYyAFd/juatmbYDEO1VAK7+HNWp2bYDEO1ZAK7+HN3LGbcDEO1bAK7+pHg663YAogmAaJfD4PaHPI8zbwcgmgCIJgCiCYBoFx6ASWYHIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBo37U+gKU+ff7Q+hCi3X78p/UhLNLlb4Uw9DX1GENXARj8PvQUQjfPAIa/Hz2tVRcB9HRC+aqXNSsfQC8nktd6WLvSAfRwAjmv+hqWDaD6iWO8ymtZNgDYQ8kAKl8xmKfqmpYMAPYiAKKVC6DqVslyFde2XACwJwEQTQBEEwDRBEA0ARBNAEQTANEEQLRyvxXi+7/+aH0IbOjn4afWh/CMHYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiFbuZ4L/++W31ofAhm5/r/U3hO0ARBMA0QRANAEQTQBEEwDRyr0NuoZ///xx0r//4de/NzoSqjtUAFMH/+X/E0Iet0BEO0wAc6/+a78GfTlMADCHAIgmAKIJgGgCIJoAiCYAogmAaAIgmgCIJgCiHSaANT7J6dOgeQ4TAMxxqJ8HeLyC+4EYxjpUAI8MNGO5BSJauQBuP9b61Xmsp+LalgsA9iQAopUMoOJWyTJV17RkALCXsgFUvWIwXeW1LBvAMNQ+cYxTfQ1LBzAM9U8gb+th7coHMAx9nEie62XNughgGPo5ofS1Vhc3118eWh/EVJ8+f2h9CJzQ0+A/6jKAp8TQVo9D/1T3AcAS3TwDwBYEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0S7v7q8uWh8EtHB3f3VhByCaAIgmAKIJgGiXw/D1YaD1gcCeHmfeDkA0ARDtWwBug0jxdNbtAER7FoBdgKN7OeN2AKK9CsAuwFGdmm07ANFOBmAX4Gjemmk7ANHeDMAuwFGcm+WzO4AI6N17M+wWiGjvBmAXoFdjZnfUDiACejN2ZkffAomAXkyZ1UnPACKguqkzOvkhWARUNWc2Z70LJAKqmTuTs98GFQFVLJnFRd8HEAGtLZ3Bxd8IEwGtrDF7qw7vzfWXhzVfD05Z86K76kch7AZsbe0Z22xg7QasaauL6+ZXbCGwxNZ3FbvdsgiBKfa6nd79nl0InLP3c2TTh1YxMAxt3zwp966NKI6t2juF/wMy7ijXkOGLSgAAAABJRU5ErkJggg==">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4FA; --surface:#FFFFFF; --surface-2:#EAECF6;
+  --ink:#1B1E2B; --ink-soft:#6B7280; --border:#E3E5F0;
+  --primary:#4F46E5; --primary-ink:#FFFFFF; --accent:#0FB5A6;
+  --ok:#16A34A; --ok-bg:#DCFCE7; --warn:#D97706; --warn-bg:#FEF3C7; --bad:#DC2626; --bad-bg:#FEE2E2;
+  --shadow:0 1px 2px rgba(20,20,43,.06), 0 4px 14px rgba(20,20,43,.05);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"]{
+  --bg:#101119; --surface:#181A26; --surface-2:#20222F;
+  --ink:#EEF0F8; --ink-soft:#9AA0B4; --border:#2A2D3D;
+  --ok-bg:#123322; --warn-bg:#3A2A0C; --bad-bg:#3A1518;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101119; --surface:#181A26; --surface-2:#20222F;
+    --ink:#EEF0F8; --ink-soft:#9AA0B4; --border:#2A2D3D;
+    --ok-bg:#123322; --warn-bg:#3A2A0C; --bad-bg:#3A1518;
+  }
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums;font-weight:600}
+.wrap{min-height:100%;display:flex;flex-direction:column}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--primary);color:#fff;padding:16px 18px;display:flex;align-items:center;justify-content:space-between}
+header.top .brand{display:flex;align-items:center;gap:10px}
+header.top .logo{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+header.top h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.15rem;margin:0}
+header.top p{margin:0;font-size:.74rem;color:rgba(255,255,255,.75)}
+.iconbtn{background:rgba(255,255,255,.16);border:none;color:#fff;width:36px;height:36px;border-radius:10px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.icon-row{display:flex;gap:6px}
+.body-row{flex:1;display:block;width:100%}
+main{padding:16px 16px calc(88px + env(safe-area-inset-bottom,0px))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.hero .card{margin-bottom:0;padding:14px}
+.hero .lbl{font-size:.72rem;color:var(--ink-soft);margin:0 0 6px;font-weight:600}
+.hero .val{font-family:'Manrope',sans-serif;font-size:1.4rem;font-weight:800;margin:0}
+.hero .bad .val{color:var(--bad)} .hero .warn .val{color:var(--warn)}
+h2.section{font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:800;margin:20px 0 10px;color:var(--ink)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:none}
+.row .name{font-weight:700}
+.row .sub{font-size:.78rem;color:var(--ink-soft);margin-top:2px}
+.tag{font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}
+.tag.bad{background:var(--bad-bg);color:var(--bad)}
+input,select,textarea{
+  width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;
+  background:var(--bg);color:var(--ink);font-family:inherit;font-size:.95rem;margin-bottom:12px;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--primary)}
+label{font-size:.78rem;color:var(--ink-soft);font-weight:600;display:block;margin-bottom:5px}
+button{font-family:'Inter',sans-serif;font-weight:700;font-size:.92rem;border:none;border-radius:12px;padding:13px 16px;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff;width:100%}
+.btn-ghost{background:var(--surface-2);color:var(--ink)}
+.btn-sm{padding:8px 12px;font-size:.78rem;border-radius:9px}
+.btn-danger{background:var(--bad);color:#fff}
+.itemrow{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:6px;align-items:center}
+.itemrow input{margin-bottom:8px}
+.pill-toggle{display:flex;gap:6px;margin-bottom:14px;background:var(--surface-2);padding:4px;border-radius:12px}
+.pill-toggle button{flex:1;background:transparent;color:var(--ink-soft);border-radius:9px;padding:9px}
+.pill-toggle button.active{background:var(--primary);color:#fff}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;background:var(--surface);border-top:1px solid var(--border);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px rgba(20,20,43,.06)}
+nav.tabs button{flex:1;background:none;color:var(--ink-soft);font-size:.58rem;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0;border-radius:10px}
+nav.tabs button.active{color:var(--primary);background:var(--surface-2)}
+nav.tabs .ic{font-size:1.1rem}
+.empty{text-align:center;padding:36px 14px;color:var(--ink-soft)}
+.search{margin-bottom:12px}
+a.linklike{color:var(--primary);font-weight:700;cursor:pointer;font-size:.88rem}
+.right{text-align:right}
+.small{font-size:.78rem;color:var(--ink-soft)}
+.hidden{display:none !important}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,20,.5);z-index:30;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-card{background:var(--surface);border-radius:18px;padding:20px;max-width:360px;width:100%;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.modal-card p{margin:0 0 16px;font-size:.92rem;line-height:1.5;white-space:pre-line}
+.gate-wrap{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.ad-card{display:flex;align-items:center;gap:12px;background:var(--surface-2);border:1px dashed var(--border);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:.8rem;color:var(--ink-soft)}
+.ad-card b{color:var(--ink)}
+.help-overlay{position:fixed;inset:0;background:var(--bg);z-index:25;overflow-y:auto;padding:20px}
+.help-overlay .inner{max-width:640px;margin:0 auto}
+.help-overlay h3{font-family:'Manrope',sans-serif;margin:18px 0 6px}
+.help-overlay p,.help-overlay li{font-size:.9rem;line-height:1.6;color:var(--ink-soft)}
+
+/* ---- Desktop layout: sidebar nav instead of bottom tabs ---- */
+@media (min-width:900px){
+  .body-row{display:flex;max-width:1120px;margin:0 auto}
+  main{flex:1;padding:28px 40px;max-width:780px}
+  nav.tabs{position:sticky;top:70px;left:auto;right:auto;bottom:auto;width:210px;height:calc(100vh - 70px);
+    flex-direction:column;border-top:none;border-right:1px solid var(--border);box-shadow:none;
+    padding:22px 12px;gap:4px;flex-shrink:0}
+  nav.tabs button{flex-direction:row;justify-content:flex-start;gap:12px;font-size:.86rem;padding:12px 14px}
+  nav.tabs .ic{font-size:1.15rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">💳</div><div><h1>Kredigo</h1><p id="dateLine"></p></div></div>
+    <div class="icon-row">
+      <button class="iconbtn" onclick="showHelp=true;render()" title="How to use">❓</button>
+      <button class="iconbtn" onclick="lockApp()" title="Lock app">🔒</button>
+      <button class="iconbtn" id="themeBtn" onclick="cycleTheme()" title="Toggle theme"></button>
+    </div>
+  </header>
+  <div class="body-row">
+    <nav class="tabs">
+      <button data-tab="dash" class="active"><span class="ic">🏠</span>Home</button>
+      <button data-tab="customers"><span class="ic">👥</span>Customers</button>
+      <button data-tab="newcredit"><span class="ic">➕</span>New</button>
+      <button data-tab="items"><span class="ic">🏷️</span>Items</button>
+      <button data-tab="payment"><span class="ic">💵</span>Pay</button>
+      <button data-tab="collections"><span class="ic">🔔</span>Collect</button>
+      <button data-tab="reports"><span class="ic">📊</span>Reports</button>
+      <button data-tab="account"><span class="ic">🔐</span>Account</button>
+    </nav>
+    <main id="app"></main>
+  </div>
+  <div id="modalRoot"></div>
+  <div id="helpRoot"></div>
+</div>
+<script>
+const PESO = n => '₱' + (Math.round(n*100)/100).toLocaleString('en-PH',{minimumFractionDigits:2});
+const todayStr = () => new Date().toISOString().slice(0,10);
+const fmtDate = d => new Date(d+'T00:00:00').toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'});
+document.getElementById('dateLine').textContent = new Date().toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+const SALT = 'kredigo-v1-';
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SALT+str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ---------- Theme ---------- */
+function getThemePref(){ try{ return localStorage.getItem('kredigo_theme') || 'system'; }catch(e){ return 'system'; } }
+function applyTheme(){
+  const pref = getThemePref();
+  if(pref==='system') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', pref);
+  document.getElementById('themeBtn').textContent = pref==='light' ? '☀️' : pref==='dark' ? '🌙' : '🌓';
+}
+function cycleTheme(){
+  const order = ['system','light','dark'];
+  const next = order[(order.indexOf(getThemePref())+1)%order.length];
+  try{ localStorage.setItem('kredigo_theme', next); }catch(e){}
+  applyTheme();
+}
+applyTheme();
+
+/* ---------- Add to Home Screen ---------- */
+let deferredInstallPrompt = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredInstallPrompt = e; render(); });
+function installApp(){
+  if(deferredInstallPrompt){ deferredInstallPrompt.prompt(); deferredInstallPrompt.userChoice.then(()=>{ deferredInstallPrompt=null; render(); }); }
+}
+
+/* ---------- Data ---------- */
+const DEFAULTS = {customers:[], txns:[], log:[], items:[], account:null, pin:null,
+  settings:{reminderDaysBefore:3, blockOnOverdue:true, showAds:true}};
+let DB = JSON.parse(JSON.stringify(DEFAULTS));
+function load(){
+  try{ const raw = localStorage.getItem('libro_db'); if(raw) DB = Object.assign(JSON.parse(JSON.stringify(DEFAULTS)), JSON.parse(raw)); }
+  catch(e){ console.error('load failed',e); }
+}
+function save(){ try{ localStorage.setItem('libro_db', JSON.stringify(DB)); }catch(e){ console.error('save failed',e); } }
+load();
+const uid = () => Math.random().toString(36).slice(2,9);
+
+/* session-only state: resets whenever the page is reloaded */
+let authed = !DB.account;
+let pinUnlocked = false;
+let showHelp = false;
+
+/* ---------- Modal (native alert/confirm/prompt get blocked in the artifact preview) ---------- */
+function closeModal(){ document.getElementById('modalRoot').innerHTML=''; }
+function showAlert(msg){
+  document.getElementById('modalRoot').innerHTML = `<div class="modal-backdrop"><div class="modal-card"><p>${escapeHtml(msg)}</p><button class="btn-primary" id="modalOk">OK</button></div></div>`;
+  document.getElementById('modalOk').onclick = closeModal;
+}
+function showConfirm(msg, onYes){
+  document.getElementById('modalRoot').innerHTML = `<div class="modal-backdrop"><div class="modal-card"><p>${escapeHtml(msg)}</p><div style="display:flex;gap:8px"><button class="btn-ghost" style="flex:1" id="modalCancel">Cancel</button><button class="btn-danger" style="flex:1" id="modalYes">Yes</button></div></div></div>`;
+  document.getElementById('modalCancel').onclick = closeModal;
+  document.getElementById('modalYes').onclick = ()=>{ closeModal(); onYes(); };
+}
+function showPrompt(msg, defVal, onSubmit, opts){
+  opts = opts||{};
+  document.getElementById('modalRoot').innerHTML = `<div class="modal-backdrop"><div class="modal-card"><p>${escapeHtml(msg)}</p><input id="modalInput" type="${opts.type||'text'}" value="${escapeAttr(defVal||'')}"><div style="display:flex;gap:8px"><button class="btn-ghost" style="flex:1" id="modalCancel">Cancel</button><button class="btn-primary" style="flex:1" id="modalOk">${opts.okLabel||'Save'}</button></div></div></div>`;
+  const input = document.getElementById('modalInput'); input.focus(); input.select();
+  document.getElementById('modalCancel').onclick = closeModal;
+  document.getElementById('modalOk').onclick = ()=>{ const v = input.value; closeModal(); onSubmit(v); };
+  input.onkeydown = (e)=>{ if(e.key==='Enter'){ const v = input.value; closeModal(); onSubmit(v); } };
+}
+
+/* ---------- Account (this device only) + PIN guard for data changes ---------- */
+function lockApp(){
+  if(DB.account){ authed=false; render(); }
+  else if(DB.pin){ pinUnlocked=false; showAlert("PIN lock re-armed — you'll need it for your next change."); }
+  else { showAlert('Set up an account or a PIN first, in the Account tab, to enable locking.'); }
+}
+function renderLogin(){
+  return `<div class="gate-wrap"><div class="card" style="max-width:340px;width:100%">
+    <p style="font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;margin:0 0 4px">🔒 Welcome back${DB.account? ', '+escapeHtml(DB.account.name):''}</p>
+    <p class="small" style="margin-bottom:16px">Enter your password to open Kredigo on this device.</p>
+    <input id="loginPass" type="password" placeholder="Password">
+    <button class="btn-primary" id="loginBtn">Unlock</button>
+  </div></div>`;
+}
+function wireLogin(){
+  const btn = document.getElementById('loginBtn'); if(!btn) return;
+  const go = async ()=>{
+    const val = document.getElementById('loginPass').value;
+    const hash = await sha256(val);
+    if(DB.account && hash===DB.account.hash){ authed=true; render(); }
+    else showAlert('Incorrect password.');
+  };
+  btn.onclick = go;
+  document.getElementById('loginPass').onkeydown = (e)=>{ if(e.key==='Enter') go(); };
+}
+function requirePin(action){
+  if(DB.pin && !pinUnlocked){
+    showPrompt('Enter your PIN to make changes:', '', async (val)=>{
+      const hash = await sha256(val);
+      if(hash===DB.pin.hash){ pinUnlocked=true; action(); }
+      else showAlert('Incorrect PIN.');
+    }, {type:'password', okLabel:'Unlock'});
+  } else action();
+}
+function renderAccount(){
+  return `
+  <h2 class="section">Login (this device)</h2>
+  <div class="card">
+    ${DB.account? `
+      <p class="small">Signed in as <b style="color:var(--ink)">${escapeHtml(DB.account.name)}</b>. This protects Kredigo only on this browser/device — it does not sync across your other devices.</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn-ghost" style="flex:1" onclick="changePassword()">Change Password</button>
+        <button class="btn-danger" style="flex:1" onclick="removeAccount()">Remove Account</button>
+      </div>
+      <button class="btn-ghost" style="margin-top:8px" onclick="lockApp()">Log Out Now</button>
+    ` : `
+      <p class="small" style="margin-bottom:10px">Create a login so a stranger picking up this device can't open your ledger.</p>
+      <label>Your name</label><input id="accName" placeholder="e.g. Ken">
+      <label>Password</label><input id="accPass" type="password" placeholder="At least 4 characters">
+      <button class="btn-primary" onclick="createAccount()">Create Account</button>
+    `}
+  </div>
+  <h2 class="section">PIN for changes</h2>
+  <div class="card">
+    <p class="small" style="margin-bottom:10px">A short PIN required before adding, editing, or deleting anything — handy if staff share the device but shouldn't need your full password every time.</p>
+    ${DB.pin? `
+      <div style="display:flex;gap:8px">
+        <button class="btn-ghost" style="flex:1" onclick="changePin()">Change PIN</button>
+        <button class="btn-danger" style="flex:1" onclick="removePin()">Turn Off PIN</button>
+      </div>
+    ` : `<button class="btn-primary" onclick="setupPin()">Set Up a PIN</button>`}
+  </div>
+  <h2 class="section">Ads</h2>
+  <div class="card">
+    <label style="display:flex;align-items:center;gap:8px;margin-bottom:0">
+      <input type="checkbox" style="width:auto;margin:0" ${DB.settings.showAds?'checked':''} onchange="DB.settings.showAds=this.checked;save();render()">
+      <span style="font-size:.85rem;font-weight:600">Show sponsor banner on Home</span>
+    </label>
+  </div>`;
+}
+function createAccount(){
+  const name = document.getElementById('accName').value.trim();
+  const pass = document.getElementById('accPass').value;
+  if(!name){ showAlert('Please enter your name.'); return; }
+  if(pass.length<4){ showAlert('Password should be at least 4 characters.'); return; }
+  sha256(pass).then(hash=>{ DB.account={name,hash}; save(); render(); });
+}
+function changePassword(){
+  showPrompt('New password:', '', (val)=>{
+    if(val.length<4){ showAlert('Password should be at least 4 characters.'); return; }
+    sha256(val).then(hash=>{ DB.account.hash=hash; save(); showAlert('Password updated.'); });
+  }, {type:'password', okLabel:'Save'});
+}
+function removeAccount(){
+  showConfirm('Remove your login? Anyone opening Kredigo on this device will get straight in.', ()=>{ DB.account=null; authed=true; save(); render(); });
+}
+function setupPin(){
+  showPrompt('Choose a 4–6 digit PIN:', '', (val)=>{
+    if(!/^\d{4,6}$/.test(val)){ showAlert('PIN should be 4 to 6 digits.'); return; }
+    sha256(val).then(hash=>{ DB.pin={hash}; pinUnlocked=true; save(); render(); });
+  }, {type:'password', okLabel:'Set PIN'});
+}
+function changePin(){
+  showPrompt('New 4–6 digit PIN:', '', (val)=>{
+    if(!/^\d{4,6}$/.test(val)){ showAlert('PIN should be 4 to 6 digits.'); return; }
+    sha256(val).then(hash=>{ DB.pin={hash}; save(); showAlert('PIN updated.'); });
+  }, {type:'password', okLabel:'Save'});
+}
+function removePin(){
+  showConfirm('Turn off the PIN requirement for changes?', ()=>{ DB.pin=null; pinUnlocked=false; save(); render(); });
+}
+
+/* ---------- Help panel ---------- */
+function renderHelp(){
+  return `<div class="help-overlay"><div class="inner">
+    <a class="linklike" onclick="showHelp=false;render()">← Close</a>
+    <h2 class="section" style="margin-top:14px">How to use Kredigo</h2>
+    <h3>1. Add your customers</h3><p>Go to <b>Customers</b> and save a name, phone, and optional credit limit for each regular.</p>
+    <h3>2. Add your products (optional)</h3><p>In <b>Items</b>, save your common products once with a price. Later, itemized credit entries can find them by search instead of retyping.</p>
+    <h3>3. Record credit</h3><p>In <b>New</b>, pick <b>Quick</b> mode for a single peso amount, or <b>Itemized</b> to list products. Set a due date so the app can track overdue balances.</p>
+    <h3>4. Record payments</h3><p>Go to <b>Pay</b>, pick the customer, and enter how much they paid — the balance updates automatically.</p>
+    <h3>5. Follow up on overdue accounts</h3><p><b>Collect</b> lists everyone overdue or due soon, with a one-tap "Copy Reminder" message and a toggle to auto-block new credit for overdue customers.</p>
+    <h3>6. Check totals</h3><p><b>Reports</b> shows today's activity, this month's totals, and overall outstanding credit.</p>
+    <h3>7. Protect your data</h3><p>In <b>Account</b>, create a login so Kredigo asks for a password when opened on this device, and/or set a short PIN that's required before any add, edit, or delete. Tap the 🔒 icon anytime to lock immediately. Note: this protection is local to this device — it isn't a synced multi-device account.</p>
+    <h3>8. Add to your home screen</h3><p>On Android/Chrome, tap the "Install" banner on Home, or your browser menu → "Install app" / "Add to Home screen". On iPhone/iPad (Safari), tap the Share icon, then "Add to Home Screen". It'll open full-screen with its own icon, just like an installed app — no app store needed.</p>
+    <h3>9. Light or dark</h3><p>Tap the circular icon in the header to cycle Auto → Light → Dark.</p>
+    <p class="small" style="margin-top:20px">Everything is saved on this device's browser storage. Clearing your browser data will erase it, so keep it installed on a device you don't reset often.</p>
+  </div></div>`;
+}
+
+/* ---------- Helpers ---------- */
+function balanceOf(cid){ return DB.txns.filter(t=>t.customerId===cid).reduce((s,t)=> s + (t.type==='credit'? t.amount : -t.amount), 0); }
+function earliestOpenDue(cid){
+  const bal = balanceOf(cid); if(bal<=0) return null;
+  const dues = DB.txns.filter(t=>t.customerId===cid && t.type==='credit' && t.dueDate).map(t=>t.dueDate).sort();
+  return dues[0] || null;
+}
+function statusOf(cid){
+  const bal = balanceOf(cid);
+  if(bal<=0) return {label:'Paid', cls:'ok'};
+  const due = earliestOpenDue(cid);
+  if(!due) return {label:'Active', cls:'ok'};
+  if(due < todayStr()) return {label:'Overdue', cls:'bad'};
+  const days = (new Date(due) - new Date(todayStr()))/86400000;
+  if(days <= 7) return {label:'Due Soon', cls:'warn'};
+  return {label:'Active', cls:'ok'};
+}
+function addDays(d,n){ const dt=new Date(d+'T00:00:00'); dt.setDate(dt.getDate()+n); return dt.toISOString().slice(0,10); }
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function escapeAttr(s){ return escapeHtml(s); }
+
+/* ---------- Router / render (preserves input focus + cursor across re-renders) ---------- */
+let tab = 'dash';
+let quickMode = true;
+
+function render(){
+  const active = document.activeElement;
+  const activeId = active && active.id ? active.id : null;
+  const selStart = active && typeof active.selectionStart === 'number' ? active.selectionStart : null;
+  const selEnd = active && typeof active.selectionEnd === 'number' ? active.selectionEnd : null;
+
+  const app = document.getElementById('app');
+  const navEl = document.querySelector('nav.tabs');
+
+  if(!authed){
+    navEl.style.display = 'none';
+    app.innerHTML = renderLogin();
+    wireLogin();
+    document.getElementById('helpRoot').innerHTML = showHelp? renderHelp() : '';
+    return;
+  }
+  navEl.style.display = '';
+
+  if(tab==='dash') app.innerHTML = renderDash();
+  else if(tab==='customers') app.innerHTML = renderCustomers();
+  else if(tab==='newcredit') app.innerHTML = renderNewCredit();
+  else if(tab==='items') app.innerHTML = renderItems();
+  else if(tab==='payment') app.innerHTML = renderPayment();
+  else if(tab==='collections') app.innerHTML = renderCollections();
+  else if(tab==='reports') app.innerHTML = renderReports();
+  else if(tab==='account') app.innerHTML = renderAccount();
+  else if(tab==='detail') app.innerHTML = renderDetail(window._detailId);
+  attachHandlers();
+  document.getElementById('helpRoot').innerHTML = showHelp? renderHelp() : '';
+
+  if(activeId){
+    const el = document.getElementById(activeId);
+    if(el){ el.focus(); if(selStart!=null && el.setSelectionRange){ try{ el.setSelectionRange(selStart, selEnd); }catch(e){} } }
+  }
+}
+
+/* ---------- Screens ---------- */
+function installBanner(){
+  if(isStandalone) return '';
+  if(deferredInstallPrompt){
+    return `<div class="ad-card" style="border-style:solid;border-color:var(--primary)"><span>📲</span><span style="flex:1"><b>Install Kredigo</b> — add it to your home screen for a full-screen app experience.</span><button class="btn-sm btn-primary" style="width:auto" onclick="installApp()">Install</button></div>`;
+  }
+  if(isIOS){
+    return `<div class="ad-card"><span>📲</span><span><b>Install Kredigo</b> — tap the Share icon in Safari, then "Add to Home Screen".</span></div>`;
+  }
+  return '';
+}
+function adBanner(){
+  if(!DB.settings.showAds) return '';
+  /* Placeholder only: this sandbox's CSP allows scripts only from a short trusted list,
+     so a real ad network script (AdSense, etc.) can't load here. Once you host this file
+     on your own domain, swap this div for your network's real ad tag. */
+  return `<div class="ad-card"><span>📣</span><span><b>Sponsored</b> — your ad could go here. Turn this off anytime in Account.</span></div>`;
+}
+function renderDash(){
+  const total = DB.customers.reduce((s,c)=> s + Math.max(0,balanceOf(c.id)), 0);
+  const active = DB.customers.filter(c=>balanceOf(c.id) > 0).length;
+  const overdue = DB.customers.reduce((s,c)=> { const st=statusOf(c.id); return s + (st.label==='Overdue'? balanceOf(c.id):0); },0);
+  const dueSoon = DB.customers.reduce((s,c)=> { const st=statusOf(c.id); return s + (st.label==='Due Soon'? balanceOf(c.id):0); },0);
+  const recent = [...DB.txns].sort((a,b)=> b.date.localeCompare(a.date)).slice(0,6);
+  if(!DB.customers.length){
+    return installBanner() + adBanner() + `<div class="empty"><p style="font-weight:700;color:var(--ink)">No customers yet</p><p>Add your first regular customer to start tracking utang instead of a notebook.</p><button class="btn-primary" onclick="tab='customers';render()" style="max-width:220px;margin:14px auto">Add a customer</button></div>`;
+  }
+  return installBanner() + adBanner() + `
+  <div class="hero">
+    <div class="card"><p class="lbl">Total Utang</p><p class="val num">${PESO(total)}</p></div>
+    <div class="card"><p class="lbl">Active Customers</p><p class="val num">${active}</p></div>
+    <div class="card bad"><p class="lbl">Overdue</p><p class="val num">${PESO(overdue)}</p></div>
+    <div class="card warn"><p class="lbl">Due This Week</p><p class="val num">${PESO(dueSoon)}</p></div>
+  </div>
+  <h2 class="section">Recent Activity</h2>
+  <div class="card">
+  ${recent.length? recent.map(t=>{
+    const c = DB.customers.find(x=>x.id===t.customerId);
+    return `<div class="row"><div><div class="name">${c? escapeHtml(c.name):'—'}</div><div class="sub">${fmtDate(t.date)} · ${t.type==='credit'?'Credit added':'Payment received'}${t.note? ' · '+escapeHtml(t.note):''}</div></div><div class="num" style="color:${t.type==='credit'?'var(--bad)':'var(--ok)'}">${t.type==='credit'?'+':'−'}${PESO(t.amount)}</div></div>`;
+  }).join('') : '<p class="small">Nothing recorded yet.</p>'}
+  </div>`;
+}
+
+function renderCustomers(){
+  const q = (window._custSearch||'').toLowerCase();
+  const list = DB.customers.filter(c=> c.name.toLowerCase().includes(q) || (c.phone||'').includes(q))
+    .sort((a,b)=> balanceOf(b.id)-balanceOf(a.id));
+  return `
+  <input id="custSearchInput" class="search" placeholder="🔍 Search by name or phone" value="${escapeAttr(window._custSearch||'')}" oninput="window._custSearch=this.value;render()">
+  <h2 class="section">Add Customer</h2>
+  <div class="card">
+    <label>Name</label><input id="newCustName" placeholder="e.g. Juan Dela Cruz">
+    <label>Phone (optional)</label><input id="newCustPhone" placeholder="09XX XXX XXXX">
+    <label>Credit limit, ₱ (optional)</label><input id="newCustLimit" type="number" placeholder="e.g. 3000">
+    <button class="btn-primary" onclick="requirePin(addCustomer)">Save Customer</button>
+  </div>
+  <h2 class="section">Customers (${list.length})</h2>
+  <div class="card">
+  ${list.length? list.map(c=>{
+    const bal = balanceOf(c.id); const st = statusOf(c.id);
+    return `<div class="row" style="cursor:pointer" onclick="window._detailId='${c.id}';tab='detail';render()">
+      <div><div class="name">${escapeHtml(c.name)}</div><div class="sub">${c.phone? c.phone: 'No phone on file'}</div></div>
+      <div class="right"><div class="num" style="font-weight:700">${PESO(Math.max(0,bal))}</div><span class="tag ${st.cls}">${st.label}</span></div>
+    </div>`;
+  }).join('') : '<p class="small">No customers match.</p>'}
+  </div>`;
+}
+
+function renderDetail(cid){
+  const c = DB.customers.find(x=>x.id===cid);
+  if(!c) { tab='customers'; return renderCustomers(); }
+  const txns = DB.txns.filter(t=>t.customerId===cid).sort((a,b)=> a.date.localeCompare(b.date));
+  const bal = balanceOf(cid); const st = statusOf(cid);
+  const totalCredit = txns.filter(t=>t.type==='credit').reduce((s,t)=>s+t.amount,0);
+  const totalPaid = txns.filter(t=>t.type==='payment').reduce((s,t)=>s+t.amount,0);
+  let running = 0;
+  const rows = txns.map(t=>{ running += (t.type==='credit'? t.amount : -t.amount); return {...t, running}; });
+  return `
+  <a class="linklike" onclick="tab='customers';render()">← Back to customers</a>
+  <div class="card" style="margin-top:12px">
+    <p class="lbl">${escapeHtml(c.name)}</p>
+    <p class="small">${c.phone||'No phone on file'}${c.limit? ' · Limit '+PESO(c.limit):''}</p>
+    <div style="display:flex;gap:16px;margin-top:10px;align-items:center">
+      <div><p class="lbl">Balance</p><p class="val num" style="font-size:1.3rem">${PESO(Math.max(0,bal))}</p></div>
+      <span class="tag ${st.cls}">${st.label}</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn-primary" style="flex:1" onclick="window._presetCust='${cid}';tab='newcredit';render()">+ Add Credit</button>
+      <button class="btn-ghost" style="flex:1" onclick="window._presetCust='${cid}';tab='payment';render()">Record Payment</button>
+    </div>
+  </div>
+  <h2 class="section">History</h2>
+  <div class="card">
+  ${rows.length? rows.slice().reverse().map(t=>`
+    <div class="row"><div><div class="name">${t.type==='credit'?'Credit':'Payment'}${t.note? ' · '+escapeHtml(t.note):''}</div><div class="sub">${fmtDate(t.date)}${t.dueDate? ' · due '+fmtDate(t.dueDate):''}</div></div>
+    <div class="right"><div class="num" style="color:${t.type==='credit'?'var(--bad)':'var(--ok)'}">${t.type==='credit'?'+':'−'}${PESO(t.amount)}</div><div class="small num">bal ${PESO(t.running)}</div></div></div>
+  `).join('') : '<p class="small">No transactions yet.</p>'}
+  </div>
+  <h2 class="section">Summary</h2>
+  <div class="card">
+  <div class="row"><div class="name">Total Credit Given</div><div class="num">${PESO(totalCredit)}</div></div>
+  <div class="row"><div class="name">Total Paid</div><div class="num">${PESO(totalPaid)}</div></div>
+  <div class="row"><div class="name">Delete customer</div><button class="btn-sm btn-danger" onclick="requirePin(()=>deleteCustomer('${cid}'))">Delete</button></div>
+  </div>`;
+}
+
+function renderItems(){
+  const q = (window._itemSearch||'').toLowerCase();
+  const list = DB.items.filter(i=>i.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+  return `
+  <h2 class="section">Add Store Item</h2>
+  <div class="card">
+    <label>Item name</label><input id="newItemName" placeholder="e.g. Lucky Me Pancit Canton">
+    <label>Price, ₱</label><input id="newItemPrice" type="number" placeholder="e.g. 15">
+    <button class="btn-primary" onclick="requirePin(addItem)">Save Item</button>
+  </div>
+  <input id="itemSearchInput" class="search" placeholder="🔍 Search your items" value="${escapeAttr(window._itemSearch||'')}" oninput="window._itemSearch=this.value;render()">
+  <h2 class="section">Your Items (${list.length})</h2>
+  <div class="card">
+  ${list.length? list.map(i=>`
+    <div class="row"><div class="name">${escapeHtml(i.name)}</div>
+    <div class="right" style="display:flex;align-items:center;gap:10px">
+      <span class="num">${PESO(i.price)}</span>
+      <button class="btn-ghost btn-sm" onclick="requirePin(()=>editItemPrice('${i.id}'))">Edit</button>
+      <button class="btn-ghost btn-sm" onclick="requirePin(()=>deleteItem('${i.id}'))">✕</button>
+    </div></div>
+  `).join('') : '<p class="small">No items saved yet. Add your common products above so New Credit can find them by search instead of typing each time.</p>'}
+  </div>`;
+}
+function addItem(){
+  const name = document.getElementById('newItemName').value.trim();
+  const price = +document.getElementById('newItemPrice').value || 0;
+  if(!name){ showAlert('Please enter an item name.'); return; }
+  DB.items.push({id:uid(), name, price});
+  save(); window._itemSearch=''; render();
+}
+function editItemPrice(id){
+  const it = DB.items.find(x=>x.id===id);
+  showPrompt(`New price for ${it.name}:`, it.price, (p)=>{ it.price = +p || 0; save(); render(); });
+}
+function deleteItem(id){
+  showConfirm('Remove this item from your store list?', ()=>{ DB.items = DB.items.filter(i=>i.id!==id); save(); render(); });
+}
+
+function renderNewCredit(){
+  const preset = window._presetCust||'';
+  if(!DB.customers.length) return `<div class="empty">Add a customer first, then come back here to record credit.</div>`;
+  window._items = window._items || [{name:'',qty:1,price:0}];
+  return `
+  <h2 class="section">New Credit</h2>
+  <div class="pill-toggle">
+    <button class="${quickMode?'active':''}" onclick="quickMode=true;render()">⚡ Quick</button>
+    <button class="${!quickMode?'active':''}" onclick="quickMode=false;render()">🧾 Itemized</button>
+  </div>
+  <div class="card">
+    <label>Customer</label>
+    <select id="ncCustomer">${DB.customers.map(c=>`<option value="${c.id}" ${c.id===preset?'selected':''}>${escapeHtml(c.name)}</option>`).join('')}</select>
+    <label>Date</label><input type="date" id="ncDate" value="${todayStr()}">
+    ${quickMode? `
+      <label>Amount, ₱</label><input type="number" id="ncAmount" placeholder="e.g. 250">
+      <label>Note (optional)</label><input id="ncNote" placeholder="e.g. Grocery">
+    ` : `
+      <label>Items</label>
+      <datalist id="itemsCatalog">${DB.items.map(it=>`<option value="${escapeAttr(it.name)}">`).join('')}</datalist>
+      <div id="itemRows">${window._items.map((it,i)=>`
+        <div class="itemrow">
+          <input placeholder="Search item..." list="itemsCatalog" value="${escapeAttr(it.name)}" oninput="window._items[${i}].name=this.value" onchange="matchItem(${i})">
+          <input type="number" placeholder="Qty" value="${it.qty}" oninput="window._items[${i}].qty=+this.value">
+          <input type="number" placeholder="Price" value="${it.price}" oninput="window._items[${i}].price=+this.value">
+          <button class="btn-ghost btn-sm" onclick="window._items.splice(${i},1);render()">✕</button>
+        </div>`).join('')}</div>
+      <button class="btn-ghost btn-sm" style="margin-bottom:12px" onclick="window._items.push({name:'',qty:1,price:0});render()">+ Add item</button>
+      <p class="small right num">Total: ${PESO(window._items.reduce((s,i)=>s+i.qty*i.price,0))}</p>
+    `}
+    <label>Due date</label><input type="date" id="ncDue" value="${addDays(todayStr(),7)}">
+    <button class="btn-primary" onclick="requirePin(saveCredit)">Save Credit</button>
+  </div>`;
+}
+function matchItem(i){
+  const val = (window._items[i].name||'').trim().toLowerCase();
+  const found = DB.items.find(it=>it.name.toLowerCase()===val);
+  if(found) window._items[i].price = found.price;
+  render();
+}
+
+function renderPayment(){
+  const preset = window._presetCust||'';
+  if(!DB.customers.length) return `<div class="empty">Add a customer first to record a payment.</div>`;
+  const cid = document.getElementById('pmCustomer')?.value || preset || DB.customers[0].id;
+  const bal = balanceOf(cid);
+  return `
+  <h2 class="section">Record Payment</h2>
+  <div class="card">
+    <label>Customer</label>
+    <select id="pmCustomer" onchange="render()">${DB.customers.map(c=>`<option value="${c.id}" ${c.id===cid?'selected':''}>${escapeHtml(c.name)}</option>`).join('')}</select>
+    <p class="small">Current balance: <span class="num">${PESO(Math.max(0,bal))}</span></p>
+    <label>Payment amount, ₱</label><input type="number" id="pmAmount" placeholder="e.g. 500">
+    <label>Method</label>
+    <select id="pmMethod"><option>Cash</option><option>GCash</option><option>Maya</option><option>Other</option></select>
+    <label>Date</label><input type="date" id="pmDate" value="${todayStr()}">
+    <button class="btn-primary" onclick="requirePin(savePayment)">Record Payment</button>
+  </div>`;
+}
+
+function reminderText(c, bal, due, kind){
+  if(kind==='before') return `Hi ${c.name}! Reminder po from the store. You have an outstanding grocery balance of ${PESO(bal)}, due on ${fmtDate(due)}. Thank you po.`;
+  if(kind==='today') return `Hi ${c.name}! Your grocery credit of ${PESO(bal)} is due today. Please settle your balance. Thank you!`;
+  return `Hi ${c.name}! Your grocery credit of ${PESO(bal)} is now overdue (was due ${fmtDate(due)}). Please settle your outstanding balance before making another credit transaction. Thank you.`;
+}
+function copyReminder(cid, kind, due){
+  const c = DB.customers.find(x=>x.id===cid); const bal = Math.max(0,balanceOf(cid));
+  const text = reminderText(c, bal, due, kind);
+  const done = ()=>{ DB.log.unshift({id:uid(), date:todayStr(), text:`Copied reminder for ${c.name} (${PESO(bal)})`}); save(); showAlert('Reminder copied — paste it into SMS or Messenger:\n\n'+text); };
+  try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(done); } else { done(); } }catch(e){ done(); }
+}
+function renderCollections(){
+  const overdue = DB.customers.filter(c=>statusOf(c.id).label==='Overdue');
+  const dueSoon = DB.customers.filter(c=>statusOf(c.id).label==='Due Soon');
+  const list = (arr, kind) => arr.length? arr.map(c=>{
+    const bal = Math.max(0,balanceOf(c.id)); const due = earliestOpenDue(c.id);
+    const days = due? Math.abs(Math.round((new Date(due)-new Date(todayStr()))/86400000)) : 0;
+    return `<div class="card" style="margin-bottom:10px">
+      <div class="row" style="border:none;padding:0 0 10px">
+        <div><div class="name">${escapeHtml(c.name)}</div><div class="sub">${PESO(bal)} · ${kind==='Overdue'? days+' day(s) overdue' : (due===todayStr()? 'due today' : 'due in '+days+' day(s)')}</div></div>
+        <span class="tag ${kind==='Overdue'?'bad':'warn'}">${kind}</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-ghost btn-sm" style="flex:1" onclick="copyReminder('${c.id}','${kind==='Overdue'?'overdue':(due===todayStr()?'today':'before')}','${due}')">Copy Reminder</button>
+        <button class="btn-ghost btn-sm" style="flex:1" onclick="window._detailId='${c.id}';tab='detail';render()">View Account</button>
+      </div>
+    </div>`;
+  }).join('') : '<p class="small">None right now.</p>';
+  return `
+  <h2 class="section">Automation Settings</h2>
+  <div class="card">
+    <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <input type="checkbox" style="width:auto;margin:0" ${DB.settings.blockOnOverdue?'checked':''} onchange="DB.settings.blockOnOverdue=this.checked;save();render()">
+      <span style="font-size:.85rem;color:var(--ink);font-weight:600">Block new credit automatically when overdue</span>
+    </label>
+    <label>Remind this many days before due date</label>
+    <input type="number" style="margin-bottom:0" value="${DB.settings.reminderDaysBefore}" onchange="DB.settings.reminderDaysBefore=+this.value;save()">
+  </div>
+  <h2 class="section">🔴 Overdue (${overdue.length})</h2>
+  ${list(overdue,'Overdue')}
+  <h2 class="section">🟡 Due Soon (${dueSoon.length})</h2>
+  ${list(dueSoon,'Due Soon')}
+  ${DB.log.length? `<h2 class="section">Recent Actions</h2><div class="card">` + DB.log.slice(0,8).map(l=>`<div class="row"><div class="sub">${fmtDate(l.date)}</div><div class="small">${escapeHtml(l.text)}</div></div>`).join('') + `</div>` : ''}`;
+}
+
+function renderReports(){
+  const today = todayStr();
+  const monthPrefix = today.slice(0,7);
+  const daily = DB.txns.filter(t=>t.date===today);
+  const monthly = DB.txns.filter(t=>t.date.startsWith(monthPrefix));
+  const sum = (arr,type)=> arr.filter(t=>t.type===type).reduce((s,t)=>s+t.amount,0);
+  const outstanding = DB.customers.reduce((s,c)=>s+Math.max(0,balanceOf(c.id)),0);
+  const overdueCount = DB.customers.filter(c=>statusOf(c.id).label==='Overdue').length;
+  return `
+  <h2 class="section">Today</h2>
+  <div class="card">
+    <div class="row"><div class="name">New Credit</div><div class="num" style="color:var(--bad)">${PESO(sum(daily,'credit'))}</div></div>
+    <div class="row"><div class="name">Payments Collected</div><div class="num" style="color:var(--ok)">${PESO(sum(daily,'payment'))}</div></div>
+  </div>
+  <h2 class="section">This Month (${new Date().toLocaleDateString('en-PH',{month:'long',year:'numeric'})})</h2>
+  <div class="card">
+    <div class="row"><div class="name">Total Credit Given</div><div class="num">${PESO(sum(monthly,'credit'))}</div></div>
+    <div class="row"><div class="name">Total Payments</div><div class="num">${PESO(sum(monthly,'payment'))}</div></div>
+  </div>
+  <h2 class="section">Overall</h2>
+  <div class="card">
+    <div class="row"><div class="name">Outstanding Credit</div><div class="num">${PESO(outstanding)}</div></div>
+    <div class="row"><div class="name">Customers with Balance</div><div class="num">${DB.customers.filter(c=>balanceOf(c.id)>0).length}</div></div>
+    <div class="row"><div class="name">Overdue Customers</div><div class="num" style="color:var(--bad)">${overdueCount}</div></div>
+  </div>`;
+}
+
+/* ---------- Actions ---------- */
+function addCustomer(){
+  const name = document.getElementById('newCustName').value.trim();
+  if(!name){ showAlert('Please enter a name.'); return; }
+  const phone = document.getElementById('newCustPhone').value.trim();
+  const limit = +document.getElementById('newCustLimit').value || 0;
+  DB.customers.push({id:uid(), name, phone, limit, notes:''});
+  save(); window._custSearch=''; render();
+}
+function deleteCustomer(cid){
+  showConfirm('Delete this customer and their transaction history? This cannot be undone.', ()=>{
+    DB.customers = DB.customers.filter(c=>c.id!==cid);
+    DB.txns = DB.txns.filter(t=>t.customerId!==cid);
+    save(); tab='customers'; render();
+  });
+}
+function saveCredit(){
+  const customerId = document.getElementById('ncCustomer').value;
+  const date = document.getElementById('ncDate').value || todayStr();
+  const dueDate = document.getElementById('ncDue').value;
+  let amount, note;
+  if(quickMode){
+    amount = +document.getElementById('ncAmount').value;
+    note = document.getElementById('ncNote').value.trim();
+  } else {
+    const items = window._items.filter(i=>i.name.trim());
+    amount = items.reduce((s,i)=>s+i.qty*i.price,0);
+    note = items.map(i=>i.name).join(', ');
+  }
+  if(!amount || amount<=0){ showAlert('Please enter a valid amount.'); return; }
+  const c = DB.customers.find(x=>x.id===customerId);
+
+  function finalizeCredit(){
+    DB.txns.push({id:uid(), customerId, date, type:'credit', amount, dueDate, note});
+    save(); window._items=[{name:'',qty:1,price:0}]; window._presetCust=''; tab='dash'; render();
+  }
+  function checkLimit(){
+    if(c && c.limit>0){
+      const newBal = balanceOf(customerId) + amount;
+      if(newBal > c.limit){
+        showConfirm(`This exceeds ${c.name}'s credit limit of ${PESO(c.limit)} (new balance would be ${PESO(newBal)}). Save anyway?`, finalizeCredit);
+        return;
+      }
+    }
+    finalizeCredit();
+  }
+  if(DB.settings.blockOnOverdue && statusOf(customerId).label==='Overdue'){
+    showPrompt(`⚠️ CREDIT BLOCKED\n\n${c.name} has an outstanding overdue balance of ${PESO(balanceOf(customerId))}.\n\nYour automation settings block new credit until this is settled. To allow this ${PESO(amount)} credit anyway, enter a reason for the override (or Cancel to stop):`, '', (reason)=>{
+      if(!reason || !reason.trim()){ showAlert('An override reason is required to proceed. Nothing was saved.'); return; }
+      DB.log.unshift({id:uid(), date:todayStr(), text:`Owner override: allowed ${PESO(amount)} credit for ${c.name} while overdue. Reason: ${reason}`});
+      checkLimit();
+    });
+    return;
+  }
+  checkLimit();
+}
+function savePayment(){
+  const customerId = document.getElementById('pmCustomer').value;
+  const amount = +document.getElementById('pmAmount').value;
+  const method = document.getElementById('pmMethod').value;
+  const date = document.getElementById('pmDate').value || todayStr();
+  if(!amount || amount<=0){ showAlert('Please enter a valid amount.'); return; }
+  DB.txns.push({id:uid(), customerId, date, type:'payment', amount, note:method});
+  save(); window._presetCust=''; tab='dash'; render();
+}
+
+function attachHandlers(){
+  document.querySelectorAll('nav.tabs button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===tab || (tab==='detail' && b.dataset.tab==='customers'));
+  });
+}
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.addEventListener('click', ()=>{ tab=b.dataset.tab; window._presetCust=''; render(); });
+});
+render();
+</script>
+</body>
+</html>
